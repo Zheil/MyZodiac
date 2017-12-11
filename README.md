@@ -1,6 +1,6 @@
 # MyZodiac
 
 
-<img src="screen1.png" width="500" height="800"/>
+<img src="screen1.png" width="300" height="500"/>
 Мой гороскоп
 
