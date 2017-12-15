@@ -1,4 +1,4 @@
-package com.zheil.zodiac;
+package com.zheil.zodiac.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.zheil.zodiac.R;
+
 import java.util.HashMap;
 
 /**
- * Класс для вывода гороскопа, знаков зодиака, изображений, обеспечения работы UI
- * Главная форма.
- * Для работы (показа информации) используется RecycleView
+ * Класс содержит методы для инициализации компонента RecycleView,
+ * который будет отображать информацию про актуальный астрологический гороскоп
+ * и содержать некоторые изображения
  * */
 public class ListZodiacActivity extends AppCompatActivity {
 
@@ -19,17 +21,24 @@ public class ListZodiacActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        init();
+
+        controlStartRecycleView();
     }
 
     /**
-     * Получает информацию из прошлого Activity
-     * Вызывает метод, который потом выполняет инициализацию RecycleView
+     * Управляет процессом создания, инициализации RecycleView
+     * получает данные из прошлой Activity
      * */
-    private void init() {
+    private void controlStartRecycleView() {
+        HashMap zodiacMap = getMapLastIntent();
+        initRecycleViewZodiac(zodiacMap);
+    }
+
+    /*** Получает информацию из прошлого Activity* */
+    private HashMap getMapLastIntent() {
         Intent intent = getIntent();
         HashMap hashMap = (HashMap) intent.getSerializableExtra("zodiac");
-        initRecycleViewZodiac(hashMap);
+        return hashMap;
     }
 
 

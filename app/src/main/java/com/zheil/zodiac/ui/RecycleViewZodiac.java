@@ -1,4 +1,4 @@
-package com.zheil.zodiac;
+package com.zheil.zodiac.ui;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.zheil.zodiac.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,7 +67,7 @@ public class RecycleViewZodiac extends RecyclerView.Adapter<RecycleViewZodiac.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = View.inflate(parent.getContext(),R.layout.recycle_view_item_zodiac, null);
+        View v = View.inflate(parent.getContext(), R.layout.recycle_view_item_zodiac, null);
         mContext = parent.getContext();
         return new ViewHolder(v);
     }

@@ -4,9 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.zheil.zodiac.ui.LoadingActivity;
 
-/**Промежуточный класс, обеспечивает появление экрана загрузки*/
-public class SplashActivity extends AppCompatActivity {
+
+/**
+ * Точка входа в программу
+ * Промежуточное Activity, выполняет роль экрана загрузки (Splash Screen)
+ * */
+public class startActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
         startNewActivity();
     }
 
-    /**Вызывает LoadingActivity, а данное закрывает*/
+    /**Вызывает новое Activity: {@link LoadingActivity}, а данное закрывает*/
     private void startNewActivity() {
         Intent intent = new Intent(this, LoadingActivity.class);
         startActivity(intent);

@@ -1,4 +1,4 @@
-package com.zheil.zodiac;
+package com.zheil.zodiac.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import com.github.glomadrian.loadingballs.BallView;
 
 import java.util.HashMap;
 
+import com.zheil.zodiac.R;
 import com.zheil.zodiac.ZodiacParser.AsyncParser;
 import com.zheil.zodiac.ZodiacParser.iCallbackParsingService;
 import butterknife.BindView;
@@ -20,7 +21,9 @@ import butterknife.OnClick;
 
 
 /**
- * Экран загрузки, который будет отображаться, пока идет процес парсинга
+ * Класс обеспечивает появления экрана загрузки,
+ * который будет отображать псевдо-прогресс, пока идет процесс парсинга
+ * На данный момент, класс не содержит инструкций по выводу информации о прогрессе парсинга
  * */
 public class LoadingActivity extends AppCompatActivity implements iCallbackParsingService {
 
@@ -57,9 +60,17 @@ public class LoadingActivity extends AppCompatActivity implements iCallbackParsi
 
 
     /**
-     * Результат парсинга
-     * Проверяет данные на их количество и на их инициализацию
-     * Если все хорошо, вызывает функцию, которая откроет новое activity
+     * Данный метод будет вызван по завершению процесса парсинга
+     * Метод проверяет входные данные на их корректность, после чего
+     * делает вывод о их целостности.
+     * Входная коллекция ДОЛЖНА иметь количество элементов не меньше, чем количество знаков зодиака (их 12!)
+     * Именно по целостности коллекции, будет сделан вывод о результате парсинга
+     *
+     * Если парсинг прошел успешно, полученная коллекция будет передана в новую Activity, которая
+     * также будет вызвана.
+     * Если метод делает вывод, что полученная коллекция не соответствует ожиданиям,
+     * бросает UI-оповещение, про ошибку
+     *
      * @param zodiac Коллекция с распарсенными данными
      * */
     @Override
@@ -94,7 +105,8 @@ public class LoadingActivity extends AppCompatActivity implements iCallbackParsi
     }
 
     /**
-     * Случиться, если во время парсинга произойдет ошибка
+     * Метод будет выполнен, если полученная во время парсинга коллекция, не будет удовлетворять
+     * условиям.
      * Показывает сообщение про ошибку, делает кнопку повторного подключения видимой
      * */
     private void errorToParsing() {
